@@ -1,0 +1,31 @@
+{
+  "name": "commento",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "foreman": "^2.0.0",
+    "mongoose": "4.6.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "babelrc": {
+    "presets": [
+      "es2016",
+      "stage-0"
+    ]
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.10"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "start-dev": "nf start -p 3000",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
