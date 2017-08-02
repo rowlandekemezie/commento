@@ -23,7 +23,6 @@ const getComment = (req, res) => {
 }
 
 const createComment = (req, res ) => {
-  console.log(req.body, 'what is in the body of the req object')
   Comment.create(req.body, (err, comment) => {
     if (err) res.json({error: err})
     res.json({
