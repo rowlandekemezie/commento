@@ -35,7 +35,7 @@ const createComment = (req, res ) => {
 
 
 const updateComment = (req, res ) => {
-  Comment.updateById(req.param.id, req.body)
+  Comment.findOneAndUpdate(req.params.id, req.body)
     .exec((err, comment) => {
       if (err) res.json({error: err});
       res.json({comment, message: 'Successfully updated!'})
@@ -43,7 +43,7 @@ const updateComment = (req, res ) => {
 }
 
 const deleteComment = (req, res ) => {
-  Comment.RemoveById(req.param.id)
+  Comment.findByIdAndRemove(req.params.id)
     .exec((err, comment) => {
       if (err) res.json({error: err});
       res.json({comment, message: 'Successfully updated!'})

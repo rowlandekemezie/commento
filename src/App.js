@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CommentList from './components/CommentList';
 import CommentForm from './components/CommentForm';
-import { postComment, fetchComments, updateComments, deleteComments } from './helpers/requests';
+import { postComment, fetchComments, updateComments, deleteComment } from './helpers/requests';
 
 import './App.css';
 
@@ -15,13 +15,18 @@ class App extends Component {
     comments: []
   }
 
-  fetchCommentsFromAPI() {
+  fetchCommentsFromAPI = () => {
     fetchComments()
     .then(res =>  this.setState({comments: res.comments}));
   }
 
   componentDidMount() {
     this.fetchCommentsFromAPI();
+    setInterval(this.fetchCommentsFromAPI, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.fetchCommentsFromAPI, 1000)
   }
 
   handleOnSubmit = (ev) => {
@@ -39,6 +44,16 @@ class App extends Component {
   handleOnChange = ({ target: { value, name} }) => {
     this.setState({comment: {...this.state.comment, [name]: value }})
   }
+
+  handleCommentUpdate = (id, comment) => {
+    updateComments(id, comment)
+      .catch(err => console.log(err, 'error updating'))
+  }
+
+  handleDeleteComment = (id) => {
+    deleteComment(id)
+      .then(() => console.log('Successfully deleted'))
+  }
   
   render() {
     const { comment, comments } = this.state;
@@ -47,8 +62,8 @@ class App extends Component {
         <CommentList 
           comments={comments}
           handleSubmit={this.handleOnSubmit}
-          comment={comment}
-          handleChange={this.handleOnChange}
+          handleCommentUpdate={this.handleCommentUpdate}
+          handleDeleteComment={this.handleDeleteComment}
         />
         <CommentForm 
           value={comment}

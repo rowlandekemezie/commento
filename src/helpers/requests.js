@@ -31,12 +31,16 @@ async function updateComments(id, newUpdate) {
   return await response.json();
 }
 
-async function deleteComments(id) {
+async function deleteComment(id) {
   const response = await fetch(`${BASE_URL}/${id}`, {
     method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
   });
   return await response.json();
 
 }
 
-export { fetchComments, updateComments, deleteComments, postComment };
+export { fetchComments, updateComments, deleteComment, postComment };
