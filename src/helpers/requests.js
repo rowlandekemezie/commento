@@ -5,7 +5,7 @@ async function fetchComments() {
   return await response.json();
 }
 
-async function postComment(comment) {  console.log(comment, 'WHAT TO POAST')
+async function postComment(comment) {
   const response = await fetch(BASE_URL, {
     body: JSON.stringify(comment),
     headers: {
